@@ -12,7 +12,7 @@
 $('#button-confirm').on('click', function() {
     $.ajax({ 
             type: 'POST',
-            url: 'index.php?route=extension/payment/paysondirect/confirm' + '<?php echo isset({{isInvoice}}) ? "method=invoice" : ""?>',
+            url: 'index.php?route=extension/payment/paysondirect/confirm',
             dataType: 'json',            
             beforeSend: function() {
                 
