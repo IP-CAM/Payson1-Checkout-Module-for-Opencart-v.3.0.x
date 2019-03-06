@@ -5,7 +5,7 @@ $_['paysondirect_example'] 			= 'Example Extra Text';
 // Heading Goes here:
 $_['heading_title']            		= 'Payson Checkout 1.0';
 $_['text_modul_name']				= 'Payson Checkout 1.0';
-$_['text_modul_version'] 			= '1.0.0.1';
+$_['text_modul_version'] 			= '1.0.0.2';
 // Text
 $_['text_payment']             		= 'Payment';
 $_['text_success']       	   		= 'Success: Du har &auml;ndrat Payson Direktbetalning modulen!';
@@ -27,18 +27,10 @@ $_['payment_method_none']                = '------------------';
 $_['payment_method_card']               = 'KORT';
 $_['payment_method_bank']               = 'BANK';
 $_['payment_method_inv']                = 'FAKTURA';
-$_['payment_method_sms']                = 'SMS';
-$_['payment_method_sms_bank']           = 'SMS / BANK';
 $_['payment_method_card_bank']          = 'KORT / BANK';
-$_['payment_method_sms_card']           = 'KORT / SMS';
-$_['payment_method_card_bank_sms']      = 'KORT / BANK / SMS';
-$_['payment_method_sms_inv']            = 'FAKTURA / SMS';
 $_['payment_method_bank_inv']           = 'FAKTURA / BANK';
 $_['payment_method_card_inv']           = 'FAKTURA / KORT';
-$_['payment_method_sms_bank_inv']       = 'FAKTURA / SMS / BANK';
-$_['payment_method_sms_card_inv']       = 'FAKTURA / SMS / KORT';
 $_['payment_method_inv_car_ban']        = 'FAKTURA / KORT / BANK';
-$_['payment_method_sms_bank_card_inv']  = 'FAKTURA / SMS / KORT / BANK';
 
    
 

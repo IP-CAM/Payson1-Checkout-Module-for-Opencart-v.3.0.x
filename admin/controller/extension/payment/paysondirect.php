@@ -31,18 +31,10 @@ class ControllerExtensionPaymentPaysondirect extends Controller {
         $data['payment_method_card'] = $this->language->get('payment_method_card');
         $data['payment_method_bank'] = $this->language->get('payment_method_bank');
         $data['payment_method_inv'] = $this->language->get('payment_method_inv');
-        $data['payment_method_sms'] = $this->language->get('payment_method_sms');
-        $data['payment_method_sms_bank'] = $this->language->get('payment_method_sms_bank');
         $data['payment_method_card_bank'] = $this->language->get('payment_method_card_bank');
-        $data['payment_method_sms_card'] = $this->language->get('payment_method_sms_card');
-        $data['payment_method_card_bank_sms'] = $this->language->get('payment_method_card_bank_sms');
-        $data['payment_method_sms_inv'] = $this->language->get('payment_method_sms_inv');
         $data['payment_method_bank_inv'] = $this->language->get('payment_method_bank_inv');
-        $data['payment_method_card_inv'] = $this->language->get('payment_method_card_inv');
-        $data['payment_method_sms_bank_inv'] = $this->language->get('payment_method_sms_bank_inv');
-        $data['payment_method_sms_card_inv'] = $this->language->get('payment_method_sms_card_inv');       
-        $data['payment_method_inv_car_ban'] = $this->language->get('payment_method_inv_car_ban');
-        $data['payment_method_sms_bank_card_inv'] = $this->language->get('payment_method_sms_bank_card_inv');       
+        $data['payment_method_card_inv'] = $this->language->get('payment_method_card_inv');      
+        $data['payment_method_inv_car_ban'] = $this->language->get('payment_method_inv_car_ban');      
         $data['payment_method_none']= $this->language->get('payment_method_none');
         
         $data['payment_paysondirect_method_mode'] = $this->language->get('payment_method_mode');

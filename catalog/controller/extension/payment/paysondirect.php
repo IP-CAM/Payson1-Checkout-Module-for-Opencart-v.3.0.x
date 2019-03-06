@@ -220,20 +220,12 @@ class ControllerExtensionPaymentPaysondirect extends Controller {
             1 => array('card'),
             2 => array('bank'),
             3 => array('invoice'),
-            4 => array('sms'),
-            5 => array('sms', 'bank'),
-            6 => array('sms', 'card'),
-            7 => array('bank', 'card'),
-            8 => array('bank', 'card', 'sms'),
-            9 => array('sms', 'invoice'),
-            10 => array('bank', 'invoice'),
-            11 => array('card', 'invoice'),
-            12 => array('sms', 'bank', 'invoice'),
-            13 => array('sms', 'card', 'invoice'),
-            14 => array('bank', 'card', 'invoice'),
-            15 => array('sms', 'bank', 'card', 'invoice'),
+            4 => array('bank', 'card'),
+            5 => array('bank', 'invoice'),
+            6 => array('card', 'invoice'),
+            7 => array('bank', 'card', 'invoice'),
         );
-        $optsStrings = array('' => FundingConstraint::NONE, 'bank' => FundingConstraint::BANK, 'card' => FundingConstraint::CREDITCARD, 'invoice' => FundingConstraint::INVOICE,  'sms' => FundingConstraint::SMS);
+        $optsStrings = array('' => FundingConstraint::NONE, 'bank' => FundingConstraint::BANK, 'card' => FundingConstraint::CREDITCARD, 'invoice' => FundingConstraint::INVOICE);
         if ($opts[$paymentMethod]) {
             foreach ($opts[$paymentMethod] as $methodStringName) {
                 $constraints[] = $optsStrings[$methodStringName];

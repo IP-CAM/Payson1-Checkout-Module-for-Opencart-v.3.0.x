@@ -1,9 +1,7 @@
 <?php
 
 $_['text_title']  = '<img src="https://www.payson.se/sites/all/files/images/external/payson150x55.png" style="width:150px;height:55px;clear:right" alt="Payson All in One - Visa, MasterCard, Direct bank" title="Payson" />';
-$_['text_title_SMS']  = '<img src="https://www.payson.se/sites/all/files/images/external/Payson_logo_checkout.png" style="width:122px;height:90px;clear:right" alt="Payson All in One - Visa, MasterCard, Direct bank and Invoice" title="Payson" />';
 $_['text_AION_INVOICE']  = '<img src="https://www.payson.se/sites/all/files/images/external/payson_All_224x55.png" style="width:224px;height:55px;clear:right" alt="Payson All in One - Visa, MasterCard, Direct bank and Invoice" title="Payson" />';
-$_['text_AION_SMS']  = '<img src="https://www.payson.se/sites/all/files/images/external/Payson_logo_checkout_faktura.png" style="width:102px;height:101px;clear:right" alt="Payson All in One - Visa, MasterCard, Direct bank and Invoice" title="Payson" />';
 
 $_['text_invoicefee']  = 'Invoice fee is added at %s SEK';
 $_['text_invoice']  = 'If Payson invoice selected you will be charged an extra fee of %s SEK';
