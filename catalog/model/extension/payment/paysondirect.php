@@ -33,7 +33,7 @@ class ModelExtensionPaymentPaysondirect extends Model {
             $method_data = array(
                 'code' => 'paysondirect',
                 'title' => '<img src="catalog/view/image/payment/p_payment_payson.png" alt="P"> Payson Checkout 1.0',
-                'terms' => $title,
+                'terms' => '',
                 'sort_order' => $this->config->get('payment_paysondirect_sort_order')
             );
         }
