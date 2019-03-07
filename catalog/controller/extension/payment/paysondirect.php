@@ -195,7 +195,16 @@ class ControllerExtensionPaymentPaysondirect extends Controller {
 
         if ($succesfullStatus) {
             if (!$order_info['order_status_id']) {
-                $this->model_checkout_order->addOrderHistory($orderId, $succesfullStatus);
+                $comment = "";
+                if($this->testMode){
+                    $comment .= "Payson-ref: " . $paymentDetails->getPurchaseId() . "\n\n";
+                    $comment .= "Payson status: " . $transferStatus . "\n\n";
+                    $comment .= "Payson invoice status: " . $invoiceStatus . "\n\n";
+                    $comment .= "Paid Order: " . $orderId;
+                    $this->testMode ? $comment .= "\n\nPayment mode: " . 'TEST MODE' : '';
+                }
+                
+                $this->model_checkout_order->addOrderHistory($orderId, $succesfullStatus, $comment, false, true);
             } else {
                 //$this->model_checkout_order->update($orderId, $succesfullStatus);
             }
