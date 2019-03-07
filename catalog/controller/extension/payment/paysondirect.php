@@ -265,14 +265,11 @@ class ControllerExtensionPaymentPaysondirect extends Controller {
         if (in_array(FundingConstraint::INVOICE, $constraints)) {
             $this->data['amount'] += $invoiceFee;
         }
-        if (!$this->testMode) {
-            $user = explode('##', $this->config->get('payment_paysondirect_user_name'));
-            $store = $this->config->get('config_store_id');
-            $userName = $user[$store];
-            $receiver = new Receiver(trim($userName), $this->data['amount']);
-        } else {
-            $receiver = new Receiver('testagent-checkout2@payson.se', $this->data['amount']);
-        }
+  
+        $user = explode('##', $this->config->get('payment_paysondirect_user_name'));
+        $store = $this->config->get('config_store_id');
+        $userName = $user[$store];
+        $receiver = new Receiver(trim($userName), $this->data['amount']);
 
         $sender = new Sender($this->data['sender_email'], $this->data['sender_first_name'], $this->data['sender_last_name']);
 
@@ -345,16 +342,12 @@ class ControllerExtensionPaymentPaysondirect extends Controller {
     private function getAPIInstance() {
         require_once 'payson/paysonapi.php';
 
-        if (!$this->testMode) {
-            $agent = explode('##', $this->config->get('payment_paysondirect_agent_id')); 
-            $md5 = explode('##', $this->config->get('payment_paysondirect_md5'));
-            $store = $this->config->get('config_store_id');                       
-            $agentid = $agent[$store];
-            $md5key = $md5[$store];
-            $credentials = new PaysonCredentials(trim($agentid), trim($md5key), null, 'PaysonCheckout1.0_Opencart-3-0|' . $this->config->get('payment_paysondirect_modul_version') . '|' . VERSION);
-        } else {
-            $credentials = new PaysonCredentials(4, '2acab30d-fe50-426f-90d7-8c60a7eb31d4', null, 'PaysonCheckout1.0_Opencart-3-0|' . $this->config->get('payment_paysondirect_modul_version') . '|' . VERSION);
-        }
+        $agent = explode('##', $this->config->get('payment_paysondirect_agent_id')); 
+        $md5 = explode('##', $this->config->get('payment_paysondirect_md5'));
+        $store = $this->config->get('config_store_id');                       
+        $agentid = $agent[$store];
+        $md5key = $md5[$store];
+        $credentials = new PaysonCredentials(trim($agentid), trim($md5key), null, 'PaysonCheckout1.0_Opencart-3-0|' . $this->config->get('payment_paysondirect_modul_version') . '|' . VERSION);
 
         $api = new PaysonApi($credentials, $this->testMode);
 

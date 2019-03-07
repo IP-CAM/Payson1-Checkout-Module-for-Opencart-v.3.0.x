@@ -118,24 +118,32 @@ class ControllerExtensionPaymentPaysondirect extends Controller {
         } else {
             $data['payment_paysondirect_modul_version'] = $this->config->get('payment_paysondirect_modul_version');
         }
-        
-        
-        
+         
         if (isset($this->request->post['payment_paysondirect_user_name'])) {
             $data['payment_paysondirect_user_name'] = $this->request->post['payment_paysondirect_user_name'];
-        } else {
+        } elseif($this->config->get('payment_paysondirect_user_name') != null) {
             $data['payment_paysondirect_user_name'] = $this->config->get('payment_paysondirect_user_name');
+        } else {
+            $data['payment_paysondirect_user_name'] = 'testagent-checkout2@payson.se';
         }
+        
         if (isset($this->request->post['payment_paysondirect_agent_id'])) {
             $data['payment_paysondirect_agent_id'] = $this->request->post['payment_paysondirect_agent_id'];
-        } else {
+        }  elseif($this->config->get('payment_paysondirect_agent_id') != null) {
             $data['payment_paysondirect_agent_id'] = $this->config->get('payment_paysondirect_agent_id');
+        } else {
+            $data['payment_paysondirect_agent_id'] = '4';
         }
+
         if (isset($this->request->post['payment_paysondirect_md5'])) {
             $data['payment_paysondirect_md5'] = $this->request->post['payment_paysondirect_md5'];
-        } else {
+        } elseif($this->config->get('payment_paysondirect_md5') != null) {
             $data['payment_paysondirect_md5'] = $this->config->get('payment_paysondirect_md5');
-        }
+        } else {
+            $data['payment_paysondirect_md5'] = '2acab30d-fe50-426f-90d7-8c60a7eb31d4';
+        }  
+
+
         if (isset($this->request->post['payment_paysondirect_mode'])) {
             $data['payment_paysondirect_mode'] = $this->request->post['payment_paysondirect_mode'];
         } else {
