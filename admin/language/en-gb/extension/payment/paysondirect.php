@@ -7,7 +7,7 @@ $_['heading_title'] = 'Payson Checkout 1.0';
 
 // Text
 $_['text_modul_name'] = 'Payson Checkout 1.0';
-$_['text_modul_version'] = '1.0.0.3';
+$_['text_modul_version'] = '1.0.0.4';
 $_['text_payment'] = 'Payment';
 $_['text_success'] = 'Success: You have modified Payson All in One payment module!';
 $_['text_paysondirect'] = '<a onclick="window.open(\'https://www.payson.se/tj%C3%A4nster/ta-betalt\');"><img src="view/image/payment/Allinone.png" alt="Payson" title="Payson" /></a>';
@@ -35,7 +35,7 @@ $_['payment_method_card_inv']           = 'INVOICE / CREDITCARD';
 $_['payment_method_inv_car_ban']        = 'INVOICE / CREDITCARD / BANK';
 
 $_['secure_word'] = 'Secure word';
-
+$_['tab_api']     = 'API Details';
 $_['entry_total'] = 'Total';
 $_['entry_order_status'] = 'Order Status';
 $_['entry_geo_zone'] = 'Geo Zone';

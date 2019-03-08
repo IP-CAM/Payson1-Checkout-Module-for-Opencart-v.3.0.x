@@ -5,7 +5,7 @@ $_['paysondirect_example'] 			= 'Example Extra Text';
 // Heading Goes here:
 $_['heading_title']            		= 'Payson Checkout 1.0';
 $_['text_modul_name']				= 'Payson Checkout 1.0';
-$_['text_modul_version'] 			= '1.0.0.3';
+$_['text_modul_version'] 			= '1.0.0.4';
 // Text
 $_['text_payment']             		= 'Payment';
 $_['text_success']       	   		= 'Success: Du har &auml;ndrat Payson Direktbetalning modulen!';
@@ -35,8 +35,8 @@ $_['payment_method_inv_car_ban']        = 'FAKTURA / KORT / BANK';
    
 
 
-$_['secure_word']                       = 'Hemligt ord';
-
+$_['secure_word']                   = 'Hemligt ord';
+$_['tab_api']          				= 'API Details';
 $_['entry_total']             		= 'Totalt';
 $_['entry_order_status']       		= 'Order Status';
 $_['entry_geo_zone']           		= 'Geo Zone';

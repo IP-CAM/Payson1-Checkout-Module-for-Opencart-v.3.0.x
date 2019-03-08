@@ -28,183 +28,193 @@
             <div class="panel-body">   
 
                 <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-payment" class="form-horizontal">
-                      <!--disabled-->                  
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-modul-version">{{ text_modul_name}} V- {{payment_paysondirect_modul_version }}</label>
-                        <div class="col-sm-10" hidden>
-                            <input type="text" name="payment_paysondirect_modul_version" hidden value=" {{ text_modul_version }}" placeholder="{{ text_modul_version }}" id="input-modul-version" class="form-control" />
+                    <ul class="nav nav-tabs">
+                       <li class="active"><a href="#tab-api" data-toggle="tab">{{ tab_api }}</a></li>
+                       <li><a href="#tab-general" data-toggle="tab">{{ tab_general }}</a></li>
+                    </ul>
+                    
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-api">  
+                            <!--disabled-->                  
+                          <div class="form-group">
+                              <label class="col-sm-2 control-label" for="input-modul-version">{{ text_modul_name}} V- {{payment_paysondirect_modul_version }}</label>
+                              <div class="col-sm-10" hidden>
+                                  <input type="text" name="payment_paysondirect_modul_version" hidden value=" {{ text_modul_version }}" placeholder="{{ text_modul_version }}" id="input-modul-version" class="form-control" />
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-2 control-label" for="input-status"> {{ entry_status }}</label>
+                              <div class="col-sm-10">
+                                  <select name="payment_paysondirect_status" id="input-status" class="form-control">
+                                      {% if payment_paysondirect_status %}
+                                      <option value="1" selected="selected">{{ text_enabled }}</option>
+                                      <option value="0">{{ text_disabled }}</option>
+                                      {% else %}
+                                      <option value="1">{{ text_enabled }}</option>
+                                      <option value="0" selected="selected">{{ text_disabled }}</option>
+                                      {% endif %}
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-2 control-label" for="input-method-mode"><span data-toggle="tooltip" title="{{ help_method_mode }}">{{payment_paysondirect_method_mode}}</span></label>
+                              <div class="col-sm-10">
+                                  <select name="payment_paysondirect_mode" id="input-method-mode" class="form-control">
+                                      <option value="1" {{(payment_paysondirect_mode?'selected':'')}}> {{payment_paysondirect_method_mode_live}}</option>
+                                      <option value="0" {{(payment_paysondirect_mode?'':'selected')}}>{{payment_paysondirect_method_mode_sandbox}}</option>
+                                  </select>
+
+                              </div>
+                          </div>
+
+                          <div class="form-group required">
+                              <label class="col-sm-2 control-label" for="input-user-name"><span data-toggle="tooltip" title="{{help_user_name}}">{{user_name}}</span></label>
+                              <div class="col-sm-10">
+                                  <input type="text" name="payment_paysondirect_user_name" value="{{payment_paysondirect_user_name}}" placeholder="{{user_name}}" id="input-user-name" class="form-control" />
+                                  {% if error_user_name %}
+                                  <div class="text-danger"><?php echo $error_user_name; ?></div>
+                                  {% endif %}
+                              </div>
+                          </div>
+
+                          <div class="form-group required">
+                              <label class="col-sm-2 control-label" for="input-agent-id"><span data-toggle="tooltip" title="{{help_agent_id}}">{{agent_id}}</span></label>
+                              <div class="col-sm-10">
+                                  <input type="text" name="payment_paysondirect_agent_id" value="{{payment_paysondirect_agent_id}}" placeholder="{{agent_id}}" id="input-agent-id" class="form-control" />
+
+                                  {% if error_agent_id %}
+                                  <div class="text-danger">{{error_agent_id}}</div>
+                                  {% endif %}
+                              </div>
+                          </div>
+
+                          <div class="form-group required">
+                              <label class="col-sm-2 control-label" for="input-md5"><span data-toggle="tooltip" title="{{help_md5}}">{{md5}}</span></label>
+                              <div class="col-sm-10">
+                                  <input type="text" name="payment_paysondirect_md5" value="{{payment_paysondirect_md5}}" placeholder="{{md5}}" id="input-md5" class="form-control" />
+                                  {% if error_md5 %}
+                                  <div class="text-danger">{{ error_md5 }}</div>
+                                  {% endif %}
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-2 control-label" for="input-payment-method"><span data-toggle="tooltip" title="{{help_method_card_bank_info}}">{{payment_paysondirect_method_card_bank_info}}</span></label>
+                              <div class="col-sm-10">
+                                  <select name="payment_paysondirect_payment_method" id="input-payment-method" class="form-control">
+                                      <option value="0" {{(payment_paysondirect_payment_method == 0  ? 'selected="selected"' : '""')}}>{{payment_method_none}}</option>
+                                      <option value="1" {{(payment_paysondirect_payment_method == 1  ? 'selected="selected"' : '""')}}>{{payment_method_card}}</option>
+                                      <option value="2" {{(payment_paysondirect_payment_method == 2  ? 'selected="selected"' : '""')}}>{{payment_method_bank}}</option>
+                                      <option value="3" {{(payment_paysondirect_payment_method == 3  ? 'selected="selected"' : '""')}}>{{payment_method_inv}}</option>
+                                      <option value="4" {{(payment_paysondirect_payment_method == 4  ? 'selected="selected"' : '""')}}>{{payment_method_card_bank}}</option>
+                                      <option value="5"{{(payment_paysondirect_payment_method == 5 ? 'selected="selected"' : '""')}}>{{payment_method_bank_inv}}</option>
+                                      <option value="6"{{(payment_paysondirect_payment_method == 6 ? 'selected="selected"' : '""')}}>{{payment_method_card_inv}}</option>
+                                      <option value="7"{{(payment_paysondirect_payment_method == 7 ? 'selected="selected"' : '""')}}>{{payment_method_inv_car_ban}}</option>
+                                  </select>
+                              </div>
+                          </div>
                         </div>
-                    </div>
+                        <div class="tab-pane" id="tab-general">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="payment_paysondirect_sort_order" value="{{ payment_paysondirect_sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-secure-word"><span data-toggle="tooltip" title="{{help_secure_word}}">{{secure_word}}</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="payment_paysondirect_secure_word" value="{{payment_paysondirect_secure_word}}" placeholder="{{secure_word}}" id="input-secure-word" class="form-control" />
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="payment_paysondirect_sort_order" value="{{ payment_paysondirect_sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-logg"><span data-toggle="tooltip" title="{{help_logg}}">{{entry_logg}}</span></label>
+                                <div class="col-sm-10">
+                                    <select name="payment_paysondirect_logg" id="input-logg" class="form-control">
+                                        <option value="1" {{ (payment_paysondirect_logg == 1 ? 'selected="selected"' : '""') }}> {{text_enabled}}</option>
+                                        <option value="0" {{(payment_paysondirect_logg == 0 ? 'selected="selected"' : '""') }}>{{text_disabled}}</option>
+                                    </select>
+                                </div>
+                            </div>             
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-status"> {{ entry_status }}</label>
-                        <div class="col-sm-10">
-                            <select name="payment_paysondirect_status" id="input-status" class="form-control">
-                                {% if payment_paysondirect_status %}
-                                <option value="1" selected="selected">{{ text_enabled }}</option>
-                                <option value="0">{{ text_disabled }}</option>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-total"><span data-toggle="tooltip" title="{{help_total}}">{{entry_total}}</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="payment_paysondirect_total" value="{{payment_paysondirect_total}}" placeholder="{{entry_total}}" id="input-total" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-order-status">{{ entry_order_status }}</label>
+                            <div class="col-sm-10">
+                              <select name="payment_paysondirect_order_status_id" id="input-order-status" class="form-control">
+                                {% for order_status in order_statuses %}
+                                {% if order_status.order_status_id == payment_paysondirect_order_status_id %}
+                                <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
                                 {% else %}
-                                <option value="1">{{ text_enabled }}</option>
-                                <option value="0" selected="selected">{{ text_disabled }}</option>
+                                <option value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
                                 {% endif %}
-                            </select>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-order-status">Invoice order status</label>
+                            <div class="col-sm-10">
+                                <select name="payment_paysondirect_invoice_status_id" id="input-invoice-status-id" class="form-control">
+                                    {% for order_status in order_statuses %}
+                                    {% if order_status.order_status_id == payment_paysondirect_invoice_status_id %}
+                                    <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
+                                    {% else %}
+                                    <option value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
+                                {% endif %}
+                                {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-geo-zone">{{ entry_geo_zone }}</label>
+                            <div class="col-sm-10">
+                              <select name="payment_paysondirect_geo_zone_id" id="input-geo-zone" class="form-control">
+                                <option value="0">{{ text_all_zones }}</option>
+                                {% for geo_zone in geo_zones %}
+                                {% if geo_zone.geo_zone_id == payment_paysondirect_geo_zone_id %}
+                                <option value="{{ geo_zone.geo_zone_id }}" selected="selected">{{ geo_zone.name }}</option>
+                                {% else %}
+                                <option value="{{ geo_zone.geo_zone_id }}">{{ geo_zone.name }}</option>
+                                {% endif %}
+                                {% endfor %}
+                              </select>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-logg">{{entry_show_receipt_page}}</label>
+                                <div class="col-sm-10">
+                                    <select name="payment_paysondirect_receipt" id="input-receipt" class="form-control">
+                                        <option value="1" {{(payment_paysondirect_receipt?'selected':'')}}> {{entry_show_receipt_page_yes}}</option>
+                                        <option value="0" {{(payment_paysondirect_receipt?'':'selected')}}>{{entry_show_receipt_page_no}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-ignored-order-totals"><span data-toggle="tooltip" title="{{help_totals_to_ignore}}">{{entry_totals_to_ignore}}</span></label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" name="payment_paysondirect_ignored_order_totals" value="{{ (payment_paysondirect_ignored_order_totals == '' ? '' : payment_paysondirect_ignored_order_totals)}}" placeholder="{{entry_totals_to_ignore}}" id="input-ignored-order-totals" class="form-control" />
+                                    {% if error_ignored_order_totals %}
+                                    <div class="text-danger">{{error_ignored_order_totals}}</div>
+                                    {% endif %}</div>
+                            </div> 
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-method-mode"><span data-toggle="tooltip" title="{{ help_method_mode }}">{{payment_paysondirect_method_mode}}</span></label>
-                        <div class="col-sm-10">
-                            <select name="payment_paysondirect_mode" id="input-method-mode" class="form-control">
-                                <option value="1" {{(payment_paysondirect_mode?'selected':'')}}> {{payment_paysondirect_method_mode_live}}</option>
-                                <option value="0" {{(payment_paysondirect_mode?'':'selected')}}>{{payment_paysondirect_method_mode_sandbox}}</option>
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-user-name"><span data-toggle="tooltip" title="{{help_user_name}}">{{user_name}}</span></label>
-                        <div class="col-sm-10">
-                            <input type="text" name="payment_paysondirect_user_name" value="{{payment_paysondirect_user_name}}" placeholder="{{user_name}}" id="input-user-name" class="form-control" />
-                            {% if error_user_name %}
-                            <div class="text-danger"><?php echo $error_user_name; ?></div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-agent-id"><span data-toggle="tooltip" title="{{help_agent_id}}">{{agent_id}}</span></label>
-                        <div class="col-sm-10">
-                            <input type="text" name="payment_paysondirect_agent_id" value="{{payment_paysondirect_agent_id}}" placeholder="{{agent_id}}" id="input-agent-id" class="form-control" />
-                            
-                            {% if error_agent_id %}
-                            <div class="text-danger">{{error_agent_id}}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-md5"><span data-toggle="tooltip" title="{{help_md5}}">{{md5}}</span></label>
-                        <div class="col-sm-10">
-                            <input type="text" name="payment_paysondirect_md5" value="{{payment_paysondirect_md5}}" placeholder="{{md5}}" id="input-md5" class="form-control" />
-                            {% if error_md5 %}
-                            <div class="text-danger">{{ error_md5 }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-payment-method"><span data-toggle="tooltip" title="{{help_method_card_bank_info}}">{{payment_paysondirect_method_card_bank_info}}</span></label>
-                        <div class="col-sm-10">
-                            <select name="payment_paysondirect_payment_method" id="input-payment-method" class="form-control">
-                                <option value="0" {{(payment_paysondirect_payment_method == 0  ? 'selected="selected"' : '""')}}>{{payment_method_none}}</option>
-                                <option value="1" {{(payment_paysondirect_payment_method == 1  ? 'selected="selected"' : '""')}}>{{payment_method_card}}</option>
-                                <option value="2" {{(payment_paysondirect_payment_method == 2  ? 'selected="selected"' : '""')}}>{{payment_method_bank}}</option>
-                                <option value="3" {{(payment_paysondirect_payment_method == 3  ? 'selected="selected"' : '""')}}>{{payment_method_inv}}</option>
-                                <option value="4" {{(payment_paysondirect_payment_method == 4  ? 'selected="selected"' : '""')}}>{{payment_method_card_bank}}</option>
-                                <option value="5"{{(payment_paysondirect_payment_method == 5 ? 'selected="selected"' : '""')}}>{{payment_method_bank_inv}}</option>
-                                <option value="6"{{(payment_paysondirect_payment_method == 6 ? 'selected="selected"' : '""')}}>{{payment_method_card_inv}}</option>
-                                <option value="7"{{(payment_paysondirect_payment_method == 7 ? 'selected="selected"' : '""')}}>{{payment_method_inv_car_ban}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-secure-word"><span data-toggle="tooltip" title="{{help_secure_word}}">{{secure_word}}</span></label>
-                        <div class="col-sm-10">
-                            <input type="text" name="payment_paysondirect_secure_word" value="{{payment_paysondirect_secure_word}}" placeholder="{{secure_word}}" id="input-secure-word" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-logg"><span data-toggle="tooltip" title="{{help_logg}}">{{entry_logg}}</span></label>
-                        <div class="col-sm-10">
-                            <select name="payment_paysondirect_logg" id="input-logg" class="form-control">
-                                <option value="1" {{ (payment_paysondirect_logg == 1 ? 'selected="selected"' : '""') }}> {{text_enabled}}</option>
-                                <option value="0" {{(payment_paysondirect_logg == 0 ? 'selected="selected"' : '""') }}>{{text_disabled}}</option>
-                            </select>
-                        </div>
-                    </div>             
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-total"><span data-toggle="tooltip" title="{{help_total}}">{{entry_total}}</span></label>
-                        <div class="col-sm-10">
-                            <input type="text" name="payment_paysondirect_total" value="{{payment_paysondirect_total}}" placeholder="{{entry_total}}" id="input-total" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                    <label class="col-sm-2 control-label" for="input-order-status">{{ entry_order_status }}</label>
-                    <div class="col-sm-10">
-                      <select name="payment_paysondirect_order_status_id" id="input-order-status" class="form-control">
-                        {% for order_status in order_statuses %}
-                        {% if order_status.order_status_id == payment_paysondirect_order_status_id %}
-                        <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
-                        {% else %}
-                        <option value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
-                        {% endif %}
-                        {% endfor %}
-                      </select>
-                    </div>
-                    </div>
-                                
-                    <div class="form-group">
-                    <label class="col-sm-2 control-label" for="input-order-status">Invoice order status</label>
-                    <div class="col-sm-10">
-                        <select name="payment_paysondirect_invoice_status_id" id="input-invoice-status-id" class="form-control">
-                            {% for order_status in order_statuses %}
-                            {% if order_status.order_status_id == payment_paysondirect_invoice_status_id %}
-                            <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
-                            {% else %}
-                            <option value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
-                        {% endif %}
-                        {% endfor %}
-                        </select>
-                        </div>
-                    </div>
-                                                 
-                    <div class="form-group">
-                    <label class="col-sm-2 control-label" for="input-geo-zone">{{ entry_geo_zone }}</label>
-                    <div class="col-sm-10">
-                      <select name="payment_paysondirect_geo_zone_id" id="input-geo-zone" class="form-control">
-                        <option value="0">{{ text_all_zones }}</option>
-                        {% for geo_zone in geo_zones %}
-                        {% if geo_zone.geo_zone_id == payment_paysondirect_geo_zone_id %}
-                        <option value="{{ geo_zone.geo_zone_id }}" selected="selected">{{ geo_zone.name }}</option>
-                        {% else %}
-                        <option value="{{ geo_zone.geo_zone_id }}">{{ geo_zone.name }}</option>
-                        {% endif %}
-                        {% endfor %}
-                      </select>
-                    </div>
-                    </div>
-              
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-logg">{{entry_show_receipt_page}}</label>
-                        <div class="col-sm-10">
-                            <select name="payment_paysondirect_receipt" id="input-receipt" class="form-control">
-                                <option value="1" {{(payment_paysondirect_receipt?'selected':'')}}> {{entry_show_receipt_page_yes}}</option>
-                                <option value="0" {{(payment_paysondirect_receipt?'':'selected')}}>{{entry_show_receipt_page_no}}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-ignored-order-totals"><span data-toggle="tooltip" title="{{help_totals_to_ignore}}">{{entry_totals_to_ignore}}</span></label>
-
-                        <div class="col-sm-10">
-                            <input type="text" name="payment_paysondirect_ignored_order_totals" value="{{ (payment_paysondirect_ignored_order_totals == '' ? '' : payment_paysondirect_ignored_order_totals)}}" placeholder="{{entry_totals_to_ignore}}" id="input-ignored-order-totals" class="form-control" />
-                            {% if error_ignored_order_totals %}
-                            <div class="text-danger">{{error_ignored_order_totals}}</div>
-                            {% endif %}</div>
-                    </div>  
                 </form>         
             </div>
         </div>
