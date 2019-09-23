@@ -1,7 +1,7 @@
-PaysonCheckout1-OpenCart-3-0
+Payson 1.0 OpenCart 3.0
 ========================
 
-Module for OpenCart 3.x implementing Payson Checkout 1.0
+Module for OpenCart 3.x implementing Payson 1.0
 
 # Payson OpenCart Module
 
