@@ -3,7 +3,7 @@
 class ModelExtensionPaymentPaysondirect extends Model {
 
     private $currency_supported_by_p_direct = array('SEK', 'EUR');
-    private $minimumAmount = 4;
+    private $minimumAmount = 10;
 
     public function getMethod($address, $total) {
         $this->language->load('extension/payment/paysondirect');
