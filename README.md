@@ -1,17 +1,15 @@
-Payson 1.0 OpenCart 3.0
-========================
-
-Module for OpenCart 3.x implementing Payson 1.0
-
-# Payson OpenCart Module
+# Payson 1.0
 
 ## Description
 
-Module for OpenCart 3.x implementing Payson
+Module for OpenCart 3.X implementing Payson 1.0
+
+## Backup
+
+* You should always backup your files and database before installing or upgdating modules
 
 ## Installation
 
-* Make a BACKUP of your web store and database. 
 * Copy all files from this repository into yor OpenCart root. 
 
 ### Configuration
