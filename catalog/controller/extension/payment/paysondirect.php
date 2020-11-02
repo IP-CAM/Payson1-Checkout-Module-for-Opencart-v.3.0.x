@@ -7,7 +7,7 @@ class ControllerExtensionPaymentPaysondirect extends Controller {
     private $isInvoice;
     private $data = array();
 
-    const MODULE_VERSION = 'payson1_opencart3-Aion_1.0.0.5';
+    const MODULE_VERSION = 'payson1_opencart3-Aion_1.0.0.6';
 
     function __construct($registry) {
         parent::__construct($registry);
