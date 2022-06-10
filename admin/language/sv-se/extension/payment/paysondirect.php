@@ -5,7 +5,7 @@ $_['paysondirect_example'] 			= 'Example Extra Text';
 // Heading Goes here:
 $_['heading_title']            		= 'Payson Checkout 1.0';
 $_['text_modul_name']				= 'Payson Checkout 1.0';
-$_['text_modul_version'] 			= '1.0.0.6';
+$_['text_modul_version'] 			= '1.0.0.7';
 // Text
 $_['text_payment']             		= 'Payment';
 $_['text_success']       	   		= 'Success: Du har &auml;ndrat Payson Direktbetalning modulen!';
