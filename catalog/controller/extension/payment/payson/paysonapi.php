@@ -157,16 +157,16 @@ class GuaranteeOffered {
 class PaysonApi {
 
     protected $credentials;
-    protected $testMode;
-    var $PAYSON_WWW_HOST = "https://%swww.payson.se";
+    protected $useTestEnvironment;
+    protected $protocol = "https://%s";
 
-    const PAYSON_WWW_PAY_FORWARD_URL = "/paysecure/?token=%s";
-
-    var $PAYSON_API_ENDPOINT = "https://%sapi.payson.se";
-
+    const PAYSON_WWW_HOST = "checkout.payson.se";
+    const PAYSON_WWW_PAY_FORWARD_URL = "/payment/?token=%s";
+    const PAYSON_API_ENDPOINT = "api.payson.se";
     const PAYSON_API_VERSION = "1.0";
     const PAYSON_API_PAY_ACTION = "Pay";
     const PAYSON_API_PAYMENT_DETAILS_ACTION = "PaymentDetails";
+    const PAYSON_API_ACCOUNT_DETAILS_ACTION = "AccountInfo";
     const PAYSON_API_PAYMENT_UPDATE_ACTION = "PaymentUpdate";
     const PAYSON_API_VALIDATE_ACTION = "Validate";
 
@@ -175,20 +175,22 @@ class PaysonApi {
      *
      * @param PaysonCredentials $credentials
      */
-    public function __construct($credentials, $testMode = false) {
+    public function __construct($credentials, $useTestEnvironment = false) {
         if (get_class($credentials) != "PaysonCredentials") {
             throw new PaysonApiException("Parameter must be of type PaysonCredentials");
         }
         $this->credentials = $credentials;
-        $this->testMode = $testMode;
+        
+        $this->useTestEnvironment = $useTestEnvironment;
+    }
 
-        if ($this->testMode) {
-            $this->PAYSON_WWW_HOST = sprintf($this->PAYSON_WWW_HOST, "test-");
-            $this->PAYSON_API_ENDPOINT = sprintf($this->PAYSON_API_ENDPOINT, "test-");
-        } else {
-            $this->PAYSON_WWW_HOST = sprintf($this->PAYSON_WWW_HOST, "");
-            $this->PAYSON_API_ENDPOINT = sprintf($this->PAYSON_API_ENDPOINT, "");
-        }
+    /**
+     * Sets the API mode
+     * 
+     * @param bool $isTestMode Indicates if we are using the test environment or not
+     */
+    public function setMode($isTestMode) {
+        $this->useTestEnvironment = $isTestMode;
     }
 
     /**
@@ -279,11 +281,12 @@ class PaysonApi {
      * @return string The URL to forward to
      */
     public function getForwardPayUrl($payResponse) {
-        return $this->PAYSON_WWW_HOST . sprintf(self::PAYSON_WWW_PAY_FORWARD_URL, $payResponse->getToken());
+        return sprintf($this->protocol, ($this->useTestEnvironment ? 'test-' : '')) . self::PAYSON_WWW_HOST . sprintf(self::PAYSON_WWW_PAY_FORWARD_URL, $payResponse->getToken());
     }
-
+    
     private function doRequest($url, $credentials, $postData) {
 
+        
         if (function_exists('curl_exec')) {
             $output = $this->doCurlRequest($url, $credentials, $postData);
             return $output;
@@ -296,7 +299,7 @@ class PaysonApi {
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $credentials->toHeader());
-        curl_setopt($ch, CURLOPT_URL, $this->PAYSON_API_ENDPOINT . $url);
+        curl_setopt($ch, CURLOPT_URL, sprintf($this->protocol, ($this->useTestEnvironment ? 'test-' : '')) . self::PAYSON_API_ENDPOINT . $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
