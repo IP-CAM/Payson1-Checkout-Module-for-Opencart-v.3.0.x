@@ -7,10 +7,10 @@ $_['heading_title'] = 'Payson Checkout 1.0';
 
 // Text
 $_['text_modul_name'] = 'Payson Checkout 1.0';
-$_['text_modul_version'] = '1.0.0.9';
+$_['text_modul_version'] = '1.0.1.0';
 $_['text_payment'] = 'Payment';
 $_['text_success'] = 'Success: You have modified Payson All in One payment module!';
-$_['text_paysondirect'] = '<a onclick="window.open(\'https://www.payson.se/tj%C3%A4nster/ta-betalt\');"><img src="view/image/payment/Allinone.png" alt="Payson" title="Payson" /></a>';
+$_['text_paysondirect'] = '<a onclick="window.open(\'https://www.svea.com/sv-se/foretag/betallosningar/e-handel/payson-checkout\');"><img src="view/image/payment/Allinone.png" alt="Payson" title="Payson" /></a>';
 $_['text_edit'] = 'Edit Payson Direct';
 
 // Entry
